@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 export const runtime = "edge"
 
 async function loadSurahFont() {
-    const response = await fetch("https://cdn.discordapp.com/attachments/625702447347662859/1330875734075375686/QCF4_Surah-Regular.ttf?ex=678f921d&is=678e409d&hm=3c996c38c152245ba0f265078775885f4434d7bf8c9e668e9bab859817188704&")
+    const response = await fetch("https://github.com/My-Quran-Tajwid/baca-opengraph/raw/refs/heads/main/public/fonts/QCF4_Surah-Regular.ttf")
     if (response.status == 200) {
         return await response.arrayBuffer()
     }
