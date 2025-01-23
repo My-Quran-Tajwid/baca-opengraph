@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
