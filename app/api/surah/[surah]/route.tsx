@@ -4,6 +4,8 @@ import { NextRequest } from 'next/server';
 export const runtime = "edge"
 
 async function loadSurahFont() {
+    // Modified fonts from https://github.com/My-Quran-Tajwid/quran-fonts/tree/main/fonts/King%20Fahd%20Complex/Custom since
+    // VercelOG/Satori doesn't support ligatures
     const response = await fetch("https://github.com/My-Quran-Tajwid/baca-opengraph/raw/refs/heads/main/public/fonts/QCF4_Surah-Regular.ttf")
     if (response.status == 200) {
         return await response.arrayBuffer()
@@ -17,6 +19,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const surahNumber = (await params).surah;
     const alternateQuery = parseInt(searchParams.get('alt') ?? '0', 10);
 
+    // Advanced typography features such as kerning, ligatures and other OpenType features are not currently supported on Satori.
+    // https://github.com/vercel/satori#language-and-typography
+    // So, I tried to be smart and make one Surah font per Character. It works.
     const symbolSet = [
         '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-',
         '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':',
