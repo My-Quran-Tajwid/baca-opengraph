@@ -18,8 +18,7 @@ async function loadGoogleFont(font: string, text: string) {
     throw new Error('failed to load font data')
 }
 
-
-export async function GET(request: NextRequest, { params }: { params: Promise<{ surah: string }> }) {
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const alternateQuery = parseInt(searchParams.get('alt') ?? '0', 10);
 
@@ -84,7 +83,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
                     name: 'Figtree',
                     data: await loadGoogleFont('Figtree', text),
                     style: 'normal',
-
                 },
             ]
         },
